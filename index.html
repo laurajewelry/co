@@ -130,6 +130,21 @@
             letter-spacing: 1px;
             font-size: 14px;
             transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a.active {
+            color: var(--accent-color);
+        }
+
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent-color);
         }
 
         nav a:hover {
@@ -286,6 +301,7 @@
         /* About Page */
         .about-section {
             padding: 80px 0;
+            display: none;
         }
 
         .about-content {
@@ -318,6 +334,7 @@
         /* Contact Page */
         .contact-section {
             padding: 80px 0;
+            display: none;
         }
 
         .contact-form {
@@ -355,6 +372,7 @@
         /* Cart Page */
         .cart-section {
             padding: 80px 0;
+            display: none;
         }
 
         .cart-container {
@@ -456,6 +474,7 @@
         /* Checkout Page */
         .checkout-section {
             padding: 80px 0;
+            display: none;
         }
 
         .checkout-container {
@@ -505,6 +524,7 @@
         /* FAQ Page */
         .faq-section {
             padding: 80px 0;
+            display: none;
         }
 
         .faq-container {
@@ -691,25 +711,38 @@
                 height: 150px;
             }
         }
+
+        /* Active page styling */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        #home-page {
+            display: block;
+        }
     </style>
 </head>
 <body>
     <!-- Header -->
     <header>
         <div class="container header-container">
-            <a href="index.html" class="logo">Laura<span>Jewelry</span>Co.</a>
+            <a href="#home" class="logo">Laura<span>Jewelry</span>Co.</a>
             <button class="mobile-menu-btn" id="mobileMenuBtn">
                 <i class="fas fa-bars"></i>
             </button>
             <nav id="mainNav">
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="shop.html">Shop</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="#home" class="nav-link active" data-page="home">Home</a></li>
+                    <li><a href="#about" class="nav-link" data-page="about">About</a></li>
+                    <li><a href="#shop" class="nav-link" data-page="shop">Shop</a></li>
+                    <li><a href="#contact" class="nav-link" data-page="contact">Contact</a></li>
+                    <li><a href="#faq" class="nav-link" data-page="faq">FAQ</a></li>
                     <li>
-                        <a href="cart.html" class="cart-icon">
+                        <a href="#cart" class="cart-icon nav-link" data-page="cart">
                             <i class="fas fa-shopping-bag"></i>
                             <span class="cart-count" id="cartCount">0</span>
                         </a>
@@ -719,52 +752,388 @@
         </div>
     </header>
 
-    <!-- Main Content (changes per page) -->
-    <main id="mainContent">
-        <!-- Homepage Content -->
-        <section class="hero">
-            <div class="container">
-                <div class="hero-content">
-                    <h1>Handcrafted Jewelry with Soul</h1>
-                    <p>Each piece tells a story of heritage, strength, and individuality. Discover our collection of timeless designs crafted with intention.</p>
-                    <a href="shop.html" class="btn">Shop Now</a>
+    <!-- Main Content -->
+    <main>
+        <!-- Home Page -->
+        <section id="home-page" class="page active">
+            <section class="hero">
+                <div class="container">
+                    <div class="hero-content">
+                        <h1>Handcrafted Jewelry with Soul</h1>
+                        <p>Each piece tells a story of heritage, strength, and individuality. Discover our collection of timeless designs crafted with intention.</p>
+                        <a href="#shop" class="btn">Shop Now</a>
+                    </div>
                 </div>
-            </div>
+            </section>
+
+            <section class="featured">
+                <div class="container">
+                    <h2 class="section-title">Featured Collection</h2>
+                    <div class="products-grid">
+                        <div class="product-card">
+                            <div class="product-image">Luna Drop Earrings</div>
+                            <div class="product-info">
+                                <h3 class="product-title">Luna Drop Earrings</h3>
+                                <p class="product-description">Hand-hammered crescent moon design</p>
+                                <p class="product-price">$48</p>
+                                <button class="btn btn-outline add-to-cart" data-id="1" data-name="Luna Drop Earrings" data-price="48">Add to Cart</button>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-image">Celeste Pendant</div>
+                            <div class="product-info">
+                                <h3 class="product-title">Celeste Pendant</h3>
+                                <p class="product-description">Layered gold disk pendant with a raw crystal core</p>
+                                <p class="product-price">$60</p>
+                                <button class="btn btn-outline add-to-cart" data-id="2" data-name="Celeste Pendant" data-price="60">Add to Cart</button>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-image">Eden Stack Rings</div>
+                            <div class="product-info">
+                                <h3 class="product-title">Eden Stack Rings</h3>
+                                <p class="product-description">Trio of minimalist textured stacking rings</p>
+                                <p class="product-price">$40</p>
+                                <button class="btn btn-outline add-to-cart" data-id="3" data-name="Eden Stack Rings" data-price="40">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </section>
 
-        <section class="featured">
-            <div class="container">
-                <h2 class="section-title">Featured Collection</h2>
-                <div class="products-grid">
-                    <div class="product-card">
-                        <div class="product-image">Luna Drop Earrings</div>
-                        <div class="product-info">
-                            <h3 class="product-title">Luna Drop Earrings</h3>
-                            <p class="product-description">Hand-hammered crescent moon design</p>
-                            <p class="product-price">$48</p>
-                            <button class="btn btn-outline add-to-cart" data-id="1" data-name="Luna Drop Earrings" data-price="48">Add to Cart</button>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <div class="product-image">Celeste Pendant</div>
-                        <div class="product-info">
-                            <h3 class="product-title">Celeste Pendant</h3>
-                            <p class="product-description">Layered gold disk pendant with a raw crystal core</p>
-                            <p class="product-price">$60</p>
-                            <button class="btn btn-outline add-to-cart" data-id="2" data-name="Celeste Pendant" data-price="60">Add to Cart</button>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <div class="product-image">Eden Stack Rings</div>
-                        <div class="product-info">
-                            <h3 class="product-title">Eden Stack Rings</h3>
-                            <p class="product-description">Trio of minimalist textured stacking rings</p>
-                            <p class="product-price">$40</p>
-                            <button class="btn btn-outline add-to-cart" data-id="3" data-name="Eden Stack Rings" data-price="40">Add to Cart</button>
+        <!-- About Page -->
+        <section id="about-page" class="page">
+            <section class="about-section">
+                <div class="container">
+                    <div class="about-content">
+                        <div class="about-image">Brand Story Image</div>
+                        <div class="about-text">
+                            <h2>Our Story</h2>
+                            <p>Laura's creations are more than just adornments — they're wearable expressions of heritage, strength, and individuality. Inspired by timeless metals and soulful stones, every piece is handcrafted with intention.</p>
+                            <p>Blending contemporary aesthetics with artisanal craftsmanship, the brand offers earthy luxury with poetic edge.</p>
+                            <p>Each jewelry piece is thoughtfully designed and meticulously crafted in our Portland studio, using ethically sourced materials and traditional techniques passed down through generations.</p>
+                            <a href="#shop" class="btn">Shop the Collection</a>
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
+        </section>
+
+        <!-- Shop Page -->
+        <section id="shop-page" class="page">
+            <section class="featured">
+                <div class="container">
+                    <h2 class="section-title">The Collection</h2>
+                    <div class="products-grid">
+                        <div class="product-card">
+                            <div class="product-image">Luna Drop Earrings</div>
+                            <div class="product-info">
+                                <h3 class="product-title">Luna Drop Earrings</h3>
+                                <p class="product-description">Hand-hammered crescent moon design | Brass, Moonstone</p>
+                                <p class="product-price">$48</p>
+                                <button class="btn btn-outline add-to-cart" data-id="1" data-name="Luna Drop Earrings" data-price="48">Add to Cart</button>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-image">Celeste Pendant</div>
+                            <div class="product-info">
+                                <h3 class="product-title">Celeste Pendant</h3>
+                                <p class="product-description">Layered gold disk pendant with a raw crystal core | 14k Gold-plated, Quartz</p>
+                                <p class="product-price">$60</p>
+                                <button class="btn btn-outline add-to-cart" data-id="2" data-name="Celeste Pendant" data-price="60">Add to Cart</button>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-image">Eden Stack Rings</div>
+                            <div class="product-info">
+                                <h3 class="product-title">Eden Stack Rings</h3>
+                                <p class="product-description">Trio of minimalist textured stacking rings | Sterling Silver</p>
+                                <p class="product-price">$40</p>
+                                <button class="btn btn-outline add-to-cart" data-id="3" data-name="Eden Stack Rings" data-price="40">Add to Cart</button>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-image">Nova Cuff</div>
+                            <div class="product-info">
+                                <h3 class="product-title">Nova Cuff</h3>
+                                <p class="product-description">Bold geometric cuff with etched sun rays | Brass</p>
+                                <p class="product-price">$78</p>
+                                <button class="btn btn-outline add-to-cart" data-id="4" data-name="Nova Cuff" data-price="78">Add to Cart</button>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-image">Aria Threaders</div>
+                            <div class="product-info">
+                                <h3 class="product-title">Aria Threaders</h3>
+                                <p class="product-description">Delicate chain earrings with gemstone drops | Gold-Fill, Garnet</p>
+                                <p class="product-price">$42</p>
+                                <button class="btn btn-outline add-to-cart" data-id="5" data-name="Aria Threaders" data-price="42">Add to Cart</button>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-image">Gaia Choker</div>
+                            <div class="product-info">
+                                <h3 class="product-title">Gaia Choker</h3>
+                                <p class="product-description">Earth-toned gemstone choker with adjustable clasp | Copper, Jasper, Leather</p>
+                                <p class="product-price">$56</p>
+                                <button class="btn btn-outline add-to-cart" data-id="6" data-name="Gaia Choker" data-price="56">Add to Cart</button>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-image">Sierra Hoops</div>
+                            <div class="product-info">
+                                <h3 class="product-title">Sierra Hoops</h3>
+                                <p class="product-description">Classic hoops with hammered finish | Sterling Silver</p>
+                                <p class="product-price">$52</p>
+                                <button class="btn btn-outline add-to-cart" data-id="7" data-name="Sierra Hoops" data-price="52">Add to Cart</button>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-image">Muse Charm Bracelet</div>
+                            <div class="product-info">
+                                <h3 class="product-title">Muse Charm Bracelet</h3>
+                                <p class="product-description">Customizable charm bracelet with nature motifs | Mixed Metal, Enamel</p>
+                                <p class="product-price">$65</p>
+                                <button class="btn btn-outline add-to-cart" data-id="8" data-name="Muse Charm Bracelet" data-price="65">Add to Cart</button>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-image">Kora Anklet</div>
+                            <div class="product-info">
+                                <h3 class="product-title">Kora Anklet</h3>
+                                <p class="product-description">Minimalist anklet with small bead accents | Gold-Filled Chain, Agate</p>
+                                <p class="product-price">$38</p>
+                                <button class="btn btn-outline add-to-cart" data-id="9" data-name="Kora Anklet" data-price="38">Add to Cart</button>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-image">Aura Studs</div>
+                            <div class="product-info">
+                                <h3 class="product-title">Aura Studs</h3>
+                                <p class="product-description">Petite gemstone studs for everyday wear | Silver, Labradorite</p>
+                                <p class="product-price">$40</p>
+                                <button class="btn btn-outline add-to-cart" data-id="10" data-name="Aura Studs" data-price="40">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- Cart Page -->
+        <section id="cart-page" class="page">
+            <section class="cart-section">
+                <div class="container">
+                    <h2 class="section-title">Your Cart</h2>
+                    <div id="cart-content">
+                        <!-- Cart content will be loaded dynamically -->
+                        <div style="text-align: center; padding: 60px 0;">
+                            <p style="font-size: 18px; margin-bottom: 30px;">Your cart is currently empty.</p>
+                            <a href="#shop" class="btn">Continue Shopping</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- Checkout Page -->
+        <section id="checkout-page" class="page">
+            <section class="checkout-section">
+                <div class="container">
+                    <h2 class="section-title">Checkout</h2>
+                    <div class="checkout-container">
+                        <div class="checkout-form">
+                            <h3 class="form-title">Billing Information</h3>
+                            <form id="checkoutForm">
+                                <div class="form-row">
+                                    <div class="form-col">
+                                        <label for="firstName">First Name</label>
+                                        <input type="text" id="firstName" required>
+                                    </div>
+                                    <div class="form-col">
+                                        <label for="lastName">Last Name</label>
+                                        <input type="text" id="lastName" required>
+                                    </div>
+                                </div>
+                                <div class="form-col">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" required>
+                                </div>
+                                <div class="form-col">
+                                    <label for="address">Street Address</label>
+                                    <input type="text" id="address" required>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-col">
+                                        <label for="city">City</label>
+                                        <input type="text" id="city" required>
+                                    </div>
+                                    <div class="form-col">
+                                        <label for="state">State</label>
+                                        <select id="state" required>
+                                            <option value="">Select State</option>
+                                            <option value="AL">Alabama</option>
+                                            <option value="AK">Alaska</option>
+                                            <option value="AZ">Arizona</option>
+                                            <option value="AR">Arkansas</option>
+                                            <option value="CA">California</option>
+                                            <option value="CO">Colorado</option>
+                                            <option value="CT">Connecticut</option>
+                                            <option value="DE">Delaware</option>
+                                            <option value="FL">Florida</option>
+                                            <option value="GA">Georgia</option>
+                                            <option value="HI">Hawaii</option>
+                                            <option value="ID">Idaho</option>
+                                            <option value="IL">Illinois</option>
+                                            <option value="IN">Indiana</option>
+                                            <option value="IA">Iowa</option>
+                                            <option value="KS">Kansas</option>
+                                            <option value="KY">Kentucky</option>
+                                            <option value="LA">Louisiana</option>
+                                            <option value="ME">Maine</option>
+                                            <option value="MD">Maryland</option>
+                                            <option value="MA">Massachusetts</option>
+                                            <option value="MI">Michigan</option>
+                                            <option value="MN">Minnesota</option>
+                                            <option value="MS">Mississippi</option>
+                                            <option value="MO">Missouri</option>
+                                            <option value="MT">Montana</option>
+                                            <option value="NE">Nebraska</option>
+                                            <option value="NV">Nevada</option>
+                                            <option value="NH">New Hampshire</option>
+                                            <option value="NJ">New Jersey</option>
+                                            <option value="NM">New Mexico</option>
+                                            <option value="NY">New York</option>
+                                            <option value="NC">North Carolina</option>
+                                            <option value="ND">North Dakota</option>
+                                            <option value="OH">Ohio</option>
+                                            <option value="OK">Oklahoma</option>
+                                            <option value="OR">Oregon</option>
+                                            <option value="PA">Pennsylvania</option>
+                                            <option value="RI">Rhode Island</option>
+                                            <option value="SC">South Carolina</option>
+                                            <option value="SD">South Dakota</option>
+                                            <option value="TN">Tennessee</option>
+                                            <option value="TX">Texas</option>
+                                            <option value="UT">Utah</option>
+                                            <option value="VT">Vermont</option>
+                                            <option value="VA">Virginia</option>
+                                            <option value="WA">Washington</option>
+                                            <option value="WV">West Virginia</option>
+                                            <option value="WI">Wisconsin</option>
+                                            <option value="WY">Wyoming</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-col">
+                                        <label for="zip">ZIP Code</label>
+                                        <input type="text" id="zip" required>
+                                    </div>
+                                    <div class="form-col">
+                                        <label for="phone">Phone</label>
+                                        <input type="tel" id="phone" required>
+                                    </div>
+                                </div>
+                                
+                                <h3 style="margin: 30px 0 20px;">Payment Information</h3>
+                                
+                                <div class="form-col">
+                                    <label for="cardNumber">Card Number</label>
+                                    <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" required>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-col">
+                                        <label for="expiry">Expiry Date</label>
+                                        <input type="text" id="expiry" placeholder="MM/YY" required>
+                                    </div>
+                                    <div class="form-col">
+                                        <label for="cvv">CVV</label>
+                                        <input type="text" id="cvv" placeholder="123" required>
+                                    </div>
+                                </div>
+                                
+                                <div style="margin-top: 30px;">
+                                    <label style="display: flex; align-items: center; gap: 10px;">
+                                        <input type="checkbox" required>
+                                        <span>I agree to the <a href="#faq" style="text-decoration: underline;">Terms & Conditions</a></span>
+                                    </label>
+                                </div>
+                                
+                                <button type="submit" class="btn" style="width: 100%; margin-top: 30px;">Complete Order</button>
+                            </form>
+                        </div>
+                        <div class="cart-summary">
+                            <h3 class="summary-title">Order Summary</h3>
+                            <div id="checkout-summary">
+                                <!-- Summary will be loaded dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- Contact Page -->
+        <section id="contact-page" class="page">
+            <section class="contact-section">
+                <div class="container">
+                    <h2 class="section-title">Contact Us</h2>
+                    <div class="contact-form">
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label for="name">Your Name</label>
+                                <input type="text" id="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" required></textarea>
+                            </div>
+                            <button type="submit" class="btn">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- FAQ Page -->
+        <section id="faq-page" class="page">
+            <section class="faq-section">
+                <div class="container">
+                    <h2 class="section-title">FAQ & Policies</h2>
+                    <div class="faq-container">
+                        <div class="faq-item">
+                            <h3 class="faq-question">What is your minimum order?</h3>
+                            <p>We have a minimum order requirement of $250. This helps ensure we can maintain our high standards of craftsmanship while keeping our prices fair for both our customers and our artisans.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h3 class="faq-question">How long does production take?</h3>
+                            <p>Each piece is made to order with a production lead time of 2–3 weeks. Since every item is handcrafted, this allows us the time needed to create your jewelry with care and attention to detail.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h3 class="faq-question">What are your payment terms?</h3>
+                            <p>We require a 50% deposit upfront to begin crafting your order, with the remaining 50% due when your items are ready to ship. This helps cover material costs and supports our small business.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h3 class="faq-question">Do you offer shipping?</h3>
+                            <p>Yes, we ship worldwide. The buyer pays for shipping costs, which are calculated at checkout based on your location and order size. Orders over $250 qualify for free domestic shipping.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h3 class="faq-question">What is your return policy?</h3>
+                            <p>Due to the custom nature of our pieces, we only accept returns for damaged items, which must be reported within 5 days of delivery. Please inspect your order upon arrival and contact us immediately if there are any issues.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h3 class="faq-question">How should I care for my jewelry?</h3>
+                            <p>To maintain the beauty of your pieces, we recommend storing them in a dry place, avoiding contact with water, chemicals, and perfumes. Gently clean with a soft cloth as needed. Each piece comes with specific care instructions.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </section>
     </main>
 
@@ -784,20 +1153,20 @@
                 <div class="footer-links">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="shop.html">Shop</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#shop">Shop</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#faq">FAQ</a></li>
                     </ul>
                 </div>
                 <div class="footer-links">
                     <h3>Customer Service</h3>
                     <ul>
-                        <li><a href="#">Shipping Policy</a></li>
-                        <li><a href="#">Return Policy</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#faq">Shipping Policy</a></li>
+                        <li><a href="#faq">Return Policy</a></li>
+                        <li><a href="#faq">Privacy Policy</a></li>
+                        <li><a href="#faq">Terms of Service</a></li>
                     </ul>
                 </div>
                 <div class="footer-contact">
@@ -834,513 +1203,7 @@
         }
 
         // Add to Cart
-        document.querySelectorAll('.add-to-cart').forEach(button => {
-            button.addEventListener('click', () => {
-                const id = button.dataset.id;
-                const name = button.dataset.name;
-                const price = parseFloat(button.dataset.price);
-                
-                const existingItem = cart.find(item => item.id === id);
-                
-                if (existingItem) {
-                    existingItem.quantity += 1;
-                } else {
-                    cart.push({ id, name, price, quantity: 1 });
-                }
-                
-                updateCartCount();
-                
-                // Show added notification
-                const notification = document.createElement('div');
-                notification.style.position = 'fixed';
-                notification.style.bottom = '20px';
-                notification.style.right = '20px';
-                notification.style.backgroundColor = 'var(--accent-color)';
-                notification.style.color = 'white';
-                notification.style.padding = '10px 20px';
-                notification.style.borderRadius = '4px';
-                notification.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
-                notification.style.zIndex = '1000';
-                notification.textContent = `${name} added to cart!`;
-                
-                document.body.appendChild(notification);
-                
-                setTimeout(() => {
-                    notification.style.opacity = '0';
-                    notification.style.transition = 'opacity 0.5s ease';
-                    setTimeout(() => {
-                        document.body.removeChild(notification);
-                    }, 500);
-                }, 2000);
-            });
-        });
-
-        // Initialize cart count
-        updateCartCount();
-
-        // Page Routing (simplified for demo)
-        const path = window.location.pathname.split('/').pop();
-        const mainContent = document.getElementById('mainContent');
-
-        function loadPageContent(page) {
-            switch(page) {
-                case 'about.html':
-                    mainContent.innerHTML = `
-                        <section class="about-section">
-                            <div class="container">
-                                <div class="about-content">
-                                    <div class="about-image">Brand Story Image</div>
-                                    <div class="about-text">
-                                        <h2>Our Story</h2>
-                                        <p>Laura's creations are more than just adornments — they're wearable expressions of heritage, strength, and individuality. Inspired by timeless metals and soulful stones, every piece is handcrafted with intention.</p>
-                                        <p>Blending contemporary aesthetics with artisanal craftsmanship, the brand offers earthy luxury with poetic edge.</p>
-                                        <p>Each jewelry piece is thoughtfully designed and meticulously crafted in our Portland studio, using ethically sourced materials and traditional techniques passed down through generations.</p>
-                                        <a href="shop.html" class="btn">Shop the Collection</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                    `;
-                    break;
-                case 'shop.html':
-                    mainContent.innerHTML = `
-                        <section class="featured">
-                            <div class="container">
-                                <h2 class="section-title">The Collection</h2>
-                                <div class="products-grid">
-                                    <div class="product-card">
-                                        <div class="product-image">Luna Drop Earrings</div>
-                                        <div class="product-info">
-                                            <h3 class="product-title">Luna Drop Earrings</h3>
-                                            <p class="product-description">Hand-hammered crescent moon design | Brass, Moonstone</p>
-                                            <p class="product-price">$48</p>
-                                            <button class="btn btn-outline add-to-cart" data-id="1" data-name="Luna Drop Earrings" data-price="48">Add to Cart</button>
-                                        </div>
-                                    </div>
-                                    <div class="product-card">
-                                        <div class="product-image">Celeste Pendant</div>
-                                        <div class="product-info">
-                                            <h3 class="product-title">Celeste Pendant</h3>
-                                            <p class="product-description">Layered gold disk pendant with a raw crystal core | 14k Gold-plated, Quartz</p>
-                                            <p class="product-price">$60</p>
-                                            <button class="btn btn-outline add-to-cart" data-id="2" data-name="Celeste Pendant" data-price="60">Add to Cart</button>
-                                        </div>
-                                    </div>
-                                    <div class="product-card">
-                                        <div class="product-image">Eden Stack Rings</div>
-                                        <div class="product-info">
-                                            <h3 class="product-title">Eden Stack Rings</h3>
-                                            <p class="product-description">Trio of minimalist textured stacking rings | Sterling Silver</p>
-                                            <p class="product-price">$40</p>
-                                            <button class="btn btn-outline add-to-cart" data-id="3" data-name="Eden Stack Rings" data-price="40">Add to Cart</button>
-                                        </div>
-                                    </div>
-                                    <div class="product-card">
-                                        <div class="product-image">Nova Cuff</div>
-                                        <div class="product-info">
-                                            <h3 class="product-title">Nova Cuff</h3>
-                                            <p class="product-description">Bold geometric cuff with etched sun rays | Brass</p>
-                                            <p class="product-price">$78</p>
-                                            <button class="btn btn-outline add-to-cart" data-id="4" data-name="Nova Cuff" data-price="78">Add to Cart</button>
-                                        </div>
-                                    </div>
-                                    <div class="product-card">
-                                        <div class="product-image">Aria Threaders</div>
-                                        <div class="product-info">
-                                            <h3 class="product-title">Aria Threaders</h3>
-                                            <p class="product-description">Delicate chain earrings with gemstone drops | Gold-Fill, Garnet</p>
-                                            <p class="product-price">$42</p>
-                                            <button class="btn btn-outline add-to-cart" data-id="5" data-name="Aria Threaders" data-price="42">Add to Cart</button>
-                                        </div>
-                                    </div>
-                                    <div class="product-card">
-                                        <div class="product-image">Gaia Choker</div>
-                                        <div class="product-info">
-                                            <h3 class="product-title">Gaia Choker</h3>
-                                            <p class="product-description">Earth-toned gemstone choker with adjustable clasp | Copper, Jasper, Leather</p>
-                                            <p class="product-price">$56</p>
-                                            <button class="btn btn-outline add-to-cart" data-id="6" data-name="Gaia Choker" data-price="56">Add to Cart</button>
-                                        </div>
-                                    </div>
-                                    <div class="product-card">
-                                        <div class="product-image">Sierra Hoops</div>
-                                        <div class="product-info">
-                                            <h3 class="product-title">Sierra Hoops</h3>
-                                            <p class="product-description">Classic hoops with hammered finish | Sterling Silver</p>
-                                            <p class="product-price">$52</p>
-                                            <button class="btn btn-outline add-to-cart" data-id="7" data-name="Sierra Hoops" data-price="52">Add to Cart</button>
-                                        </div>
-                                    </div>
-                                    <div class="product-card">
-                                        <div class="product-image">Muse Charm Bracelet</div>
-                                        <div class="product-info">
-                                            <h3 class="product-title">Muse Charm Bracelet</h3>
-                                            <p class="product-description">Customizable charm bracelet with nature motifs | Mixed Metal, Enamel</p>
-                                            <p class="product-price">$65</p>
-                                            <button class="btn btn-outline add-to-cart" data-id="8" data-name="Muse Charm Bracelet" data-price="65">Add to Cart</button>
-                                        </div>
-                                    </div>
-                                    <div class="product-card">
-                                        <div class="product-image">Kora Anklet</div>
-                                        <div class="product-info">
-                                            <h3 class="product-title">Kora Anklet</h3>
-                                            <p class="product-description">Minimalist anklet with small bead accents | Gold-Filled Chain, Agate</p>
-                                            <p class="product-price">$38</p>
-                                            <button class="btn btn-outline add-to-cart" data-id="9" data-name="Kora Anklet" data-price="38">Add to Cart</button>
-                                        </div>
-                                    </div>
-                                    <div class="product-card">
-                                        <div class="product-image">Aura Studs</div>
-                                        <div class="product-info">
-                                            <h3 class="product-title">Aura Studs</h3>
-                                            <p class="product-description">Petite gemstone studs for everyday wear | Silver, Labradorite</p>
-                                            <p class="product-price">$40</p>
-                                            <button class="btn btn-outline add-to-cart" data-id="10" data-name="Aura Studs" data-price="40">Add to Cart</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                    `;
-                    break;
-                case 'cart.html':
-                    if (cart.length === 0) {
-                        mainContent.innerHTML = `
-                            <section class="cart-section">
-                                <div class="container">
-                                    <h2 class="section-title">Your Cart</h2>
-                                    <div style="text-align: center; padding: 60px 0;">
-                                        <p style="font-size: 18px; margin-bottom: 30px;">Your cart is currently empty.</p>
-                                        <a href="shop.html" class="btn">Continue Shopping</a>
-                                    </div>
-                                </div>
-                            </section>
-                        `;
-                    } else {
-                        const cartItemsHTML = cart.map(item => `
-                            <div class="cart-item" data-id="${item.id}">
-                                <div class="cart-item-image">${item.name}</div>
-                                <div class="cart-item-details">
-                                    <h3>${item.name}</h3>
-                                    <p class="cart-item-price">$${item.price.toFixed(2)}</p>
-                                    <div class="cart-item-quantity">
-                                        <button class="quantity-btn decrease-btn">-</button>
-                                        <span>${item.quantity}</span>
-                                        <button class="quantity-btn increase-btn">+</button>
-                                    </div>
-                                    <button class="cart-item-remove">Remove</button>
-                                </div>
-                                <div class="cart-item-total">
-                                    $${(item.price * item.quantity).toFixed(2)}
-                                </div>
-                            </div>
-                        `).join('');
-                        
-                        const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
-                        const shipping = subtotal > 250 ? 0 : 15;
-                        const total = subtotal + shipping;
-                        
-                        mainContent.innerHTML = `
-                            <section class="cart-section">
-                                <div class="container">
-                                    <h2 class="section-title">Your Cart</h2>
-                                    <div class="cart-container">
-                                        <div class="cart-items">
-                                            ${cartItemsHTML}
-                                        </div>
-                                        <div class="cart-summary">
-                                            <h3 class="summary-title">Order Summary</h3>
-                                            <div class="summary-row">
-                                                <span>Subtotal</span>
-                                                <span>$${subtotal.toFixed(2)}</span>
-                                            </div>
-                                            <div class="summary-row">
-                                                <span>Shipping</span>
-                                                <span>${subtotal > 250 ? 'FREE' : '$15.00'}</span>
-                                            </div>
-                                            <div class="summary-row summary-total">
-                                                <span>Total</span>
-                                                <span>$${total.toFixed(2)}</span>
-                                            </div>
-                                            <a href="checkout.html" class="btn" style="width: 100%; text-align: center; margin-top: 20px;">Proceed to Checkout</a>
-                                            <p style="text-align: center; margin-top: 15px; font-size: 14px;">Minimum order: $250 ($${(250 - subtotal).toFixed(2)} more for free shipping)</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-                        `;
-                        
-                        // Add cart functionality
-                        document.querySelectorAll('.decrease-btn').forEach(btn => {
-                            btn.addEventListener('click', function() {
-                                const itemId = this.closest('.cart-item').dataset.id;
-                                const item = cart.find(item => item.id === itemId);
-                                
-                                if (item.quantity > 1) {
-                                    item.quantity -= 1;
-                                } else {
-                                    cart = cart.filter(item => item.id !== itemId);
-                                }
-                                
-                                updateCartCount();
-                                loadPageContent('cart.html');
-                            });
-                        });
-                        
-                        document.querySelectorAll('.increase-btn').forEach(btn => {
-                            btn.addEventListener('click', function() {
-                                const itemId = this.closest('.cart-item').dataset.id;
-                                const item = cart.find(item => item.id === itemId);
-                                item.quantity += 1;
-                                updateCartCount();
-                                loadPageContent('cart.html');
-                            });
-                        });
-                        
-                        document.querySelectorAll('.cart-item-remove').forEach(btn => {
-                            btn.addEventListener('click', function() {
-                                const itemId = this.closest('.cart-item').dataset.id;
-                                cart = cart.filter(item => item.id !== itemId);
-                                updateCartCount();
-                                loadPageContent('cart.html');
-                            });
-                        });
-                    }
-                    break;
-                case 'checkout.html':
-                    mainContent.innerHTML = `
-                        <section class="checkout-section">
-                            <div class="container">
-                                <h2 class="section-title">Checkout</h2>
-                                <div class="checkout-container">
-                                    <div class="checkout-form">
-                                        <h3 class="form-title">Billing Information</h3>
-                                        <form id="checkoutForm">
-                                            <div class="form-row">
-                                                <div class="form-col">
-                                                    <label for="firstName">First Name</label>
-                                                    <input type="text" id="firstName" required>
-                                                </div>
-                                                <div class="form-col">
-                                                    <label for="lastName">Last Name</label>
-                                                    <input type="text" id="lastName" required>
-                                                </div>
-                                            </div>
-                                            <div class="form-col">
-                                                <label for="email">Email</label>
-                                                <input type="email" id="email" required>
-                                            </div>
-                                            <div class="form-col">
-                                                <label for="address">Street Address</label>
-                                                <input type="text" id="address" required>
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="form-col">
-                                                    <label for="city">City</label>
-                                                    <input type="text" id="city" required>
-                                                </div>
-                                                <div class="form-col">
-                                                    <label for="state">State</label>
-                                                    <select id="state" required>
-                                                        <option value="">Select State</option>
-                                                        <option value="AL">Alabama</option>
-                                                        <option value="AK">Alaska</option>
-                                                        <option value="AZ">Arizona</option>
-                                                        <option value="AR">Arkansas</option>
-                                                        <option value="CA">California</option>
-                                                        <option value="CO">Colorado</option>
-                                                        <option value="CT">Connecticut</option>
-                                                        <option value="DE">Delaware</option>
-                                                        <option value="FL">Florida</option>
-                                                        <option value="GA">Georgia</option>
-                                                        <option value="HI">Hawaii</option>
-                                                        <option value="ID">Idaho</option>
-                                                        <option value="IL">Illinois</option>
-                                                        <option value="IN">Indiana</option>
-                                                        <option value="IA">Iowa</option>
-                                                        <option value="KS">Kansas</option>
-                                                        <option value="KY">Kentucky</option>
-                                                        <option value="LA">Louisiana</option>
-                                                        <option value="ME">Maine</option>
-                                                        <option value="MD">Maryland</option>
-                                                        <option value="MA">Massachusetts</option>
-                                                        <option value="MI">Michigan</option>
-                                                        <option value="MN">Minnesota</option>
-                                                        <option value="MS">Mississippi</option>
-                                                        <option value="MO">Missouri</option>
-                                                        <option value="MT">Montana</option>
-                                                        <option value="NE">Nebraska</option>
-                                                        <option value="NV">Nevada</option>
-                                                        <option value="NH">New Hampshire</option>
-                                                        <option value="NJ">New Jersey</option>
-                                                        <option value="NM">New Mexico</option>
-                                                        <option value="NY">New York</option>
-                                                        <option value="NC">North Carolina</option>
-                                                        <option value="ND">North Dakota</option>
-                                                        <option value="OH">Ohio</option>
-                                                        <option value="OK">Oklahoma</option>
-                                                        <option value="OR">Oregon</option>
-                                                        <option value="PA">Pennsylvania</option>
-                                                        <option value="RI">Rhode Island</option>
-                                                        <option value="SC">South Carolina</option>
-                                                        <option value="SD">South Dakota</option>
-                                                        <option value="TN">Tennessee</option>
-                                                        <option value="TX">Texas</option>
-                                                        <option value="UT">Utah</option>
-                                                        <option value="VT">Vermont</option>
-                                                        <option value="VA">Virginia</option>
-                                                        <option value="WA">Washington</option>
-                                                        <option value="WV">West Virginia</option>
-                                                        <option value="WI">Wisconsin</option>
-                                                        <option value="WY">Wyoming</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="form-col">
-                                                    <label for="zip">ZIP Code</label>
-                                                    <input type="text" id="zip" required>
-                                                </div>
-                                                <div class="form-col">
-                                                    <label for="phone">Phone</label>
-                                                    <input type="tel" id="phone" required>
-                                                </div>
-                                            </div>
-                                            
-                                            <h3 style="margin: 30px 0 20px;">Payment Information</h3>
-                                            
-                                            <div class="form-col">
-                                                <label for="cardNumber">Card Number</label>
-                                                <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" required>
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="form-col">
-                                                    <label for="expiry">Expiry Date</label>
-                                                    <input type="text" id="expiry" placeholder="MM/YY" required>
-                                                </div>
-                                                <div class="form-col">
-                                                    <label for="cvv">CVV</label>
-                                                    <input type="text" id="cvv" placeholder="123" required>
-                                                </div>
-                                            </div>
-                                            
-                                            <div style="margin-top: 30px;">
-                                                <label style="display: flex; align-items: center; gap: 10px;">
-                                                    <input type="checkbox" required>
-                                                    <span>I agree to the <a href="#" style="text-decoration: underline;">Terms & Conditions</a></span>
-                                                </label>
-                                            </div>
-                                            
-                                            <button type="submit" class="btn" style="width: 100%; margin-top: 30px;">Complete Order</button>
-                                        </form>
-                                    </div>
-                                    <div class="cart-summary">
-                                        <h3 class="summary-title">Order Summary</h3>
-                                        ${cart.map(item => `
-                                            <div class="summary-row" style="margin-bottom: 10px;">
-                                                <span>${item.name} × ${item.quantity}</span>
-                                                <span>$${(item.price * item.quantity).toFixed(2)}</span>
-                                            </div>
-                                        `).join('')}
-                                        <div class="summary-row">
-                                            <span>Subtotal</span>
-                                            <span>$${cart.reduce((total, item) => total + (item.price * item.quantity), 0).toFixed(2)}</span>
-                                        </div>
-                                        <div class="summary-row">
-                                            <span>Shipping</span>
-                                            <span>${cart.reduce((total, item) => total + (item.price * item.quantity), 0) > 250 ? 'FREE' : '$15.00'}</span>
-                                        </div>
-                                        <div class="summary-row summary-total">
-                                            <span>Total</span>
-                                            <span>$${(cart.reduce((total, item) => total + (item.price * item.quantity), 0) + (cart.reduce((total, item) => total + (item.price * item.quantity), 0) > 250 ? 0 : 15)).toFixed(2)}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                    `;
-                    
-                    document.getElementById('checkoutForm').addEventListener('submit', function(e) {
-                        e.preventDefault();
-                        alert('Thank you for your order! This is a demo site, so no actual payment was processed.');
-                        cart = [];
-                        updateCartCount();
-                        window.location.href = 'index.html';
-                    });
-                    break;
-                case 'contact.html':
-                    mainContent.innerHTML = `
-                        <section class="contact-section">
-                            <div class="container">
-                                <h2 class="section-title">Contact Us</h2>
-                                <div class="contact-form">
-                                    <form id="contactForm">
-                                        <div class="form-group">
-                                            <label for="name">Your Name</label>
-                                            <input type="text" id="name" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="email">Email Address</label>
-                                            <input type="email" id="email" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="message">Message</label>
-                                            <textarea id="message" required></textarea>
-                                        </div>
-                                        <button type="submit" class="btn">Send Message</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </section>
-                    `;
-                    
-                    document.getElementById('contactForm').addEventListener('submit', function(e) {
-                        e.preventDefault();
-                        alert('Thank you for your message! This is a demo site, so your message wasn\'t actually sent.');
-                        this.reset();
-                    });
-                    break;
-                case 'faq.html':
-                    mainContent.innerHTML = `
-                        <section class="faq-section">
-                            <div class="container">
-                                <h2 class="section-title">FAQ & Policies</h2>
-                                <div class="faq-container">
-                                    <div class="faq-item">
-                                        <h3 class="faq-question">What is your minimum order?</h3>
-                                        <p>We have a minimum order requirement of $250. This helps ensure we can maintain our high standards of craftsmanship while keeping our prices fair for both our customers and our artisans.</p>
-                                    </div>
-                                    <div class="faq-item">
-                                        <h3 class="faq-question">How long does production take?</h3>
-                                        <p>Each piece is made to order with a production lead time of 2–3 weeks. Since every item is handcrafted, this allows us the time needed to create your jewelry with care and attention to detail.</p>
-                                    </div>
-                                    <div class="faq-item">
-                                        <h3 class="faq-question">What are your payment terms?</h3>
-                                        <p>We require a 50% deposit upfront to begin crafting your order, with the remaining 50% due when your items are ready to ship. This helps cover material costs and supports our small business.</p>
-                                    </div>
-                                    <div class="faq-item">
-                                        <h3 class="faq-question">Do you offer shipping?</h3>
-                                        <p>Yes, we ship worldwide. The buyer pays for shipping costs, which are calculated at checkout based on your location and order size. Orders over $250 qualify for free domestic shipping.</p>
-                                    </div>
-                                    <div class="faq-item">
-                                        <h3 class="faq-question">What is your return policy?</h3>
-                                        <p>Due to the custom nature of our pieces, we only accept returns for damaged items, which must be reported within 5 days of delivery. Please inspect your order upon arrival and contact us immediately if there are any issues.</p>
-                                    </div>
-                                    <div class="faq-item">
-                                        <h3 class="faq-question">How should I care for my jewelry?</h3>
-                                        <p>To maintain the beauty of your pieces, we recommend storing them in a dry place, avoiding contact with water, chemicals, and perfumes. Gently clean with a soft cloth as needed. Each piece comes with specific care instructions.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                    `;
-                    break;
-                default:
-                    // Homepage is already loaded by default
-                    break;
-            }
-            
-            // Re-attach add to cart event listeners
+        function setupAddToCartButtons() {
             document.querySelectorAll('.add-to-cart').forEach(button => {
                 button.addEventListener('click', () => {
                     const id = button.dataset.id;
@@ -1358,35 +1221,235 @@
                     updateCartCount();
                     
                     // Show added notification
-                    const notification = document.createElement('div');
-                    notification.style.position = 'fixed';
-                    notification.style.bottom = '20px';
-                    notification.style.right = '20px';
-                    notification.style.backgroundColor = 'var(--accent-color)';
-                    notification.style.color = 'white';
-                    notification.style.padding = '10px 20px';
-                    notification.style.borderRadius = '4px';
-                    notification.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
-                    notification.style.zIndex = '1000';
-                    notification.textContent = `${name} added to cart!`;
-                    
-                    document.body.appendChild(notification);
-                    
-                    setTimeout(() => {
-                        notification.style.opacity = '0';
-                        notification.style.transition = 'opacity 0.5s ease';
-                        setTimeout(() => {
-                            document.body.removeChild(notification);
-                        }, 500);
-                    }, 2000);
+                    showNotification(`${name} added to cart!`);
                 });
             });
         }
 
-        // Load appropriate content based on current page
-        if (path && path !== 'index.html') {
-            loadPageContent(path);
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.position = 'fixed';
+            notification.style.bottom = '20px';
+            notification.style.right = '20px';
+            notification.style.backgroundColor = 'var(--accent-color)';
+            notification.style.color = 'white';
+            notification.style.padding = '10px 20px';
+            notification.style.borderRadius = '4px';
+            notification.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
+            notification.style.zIndex = '1000';
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transition = 'opacity 0.5s ease';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 500);
+            }, 2000);
         }
+
+        // Initialize cart count
+        updateCartCount();
+
+        // Page Routing
+        function loadPage(page) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(p => {
+                p.classList.remove('active');
+            });
+
+            // Show selected page
+            const pageElement = document.getElementById(`${page}-page`);
+            if (pageElement) {
+                pageElement.classList.add('active');
+            }
+
+            // Update active nav link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.dataset.page === page) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Special handling for cart page
+            if (page === 'cart') {
+                loadCartPage();
+            }
+
+            // Special handling for checkout page
+            if (page === 'checkout') {
+                loadCheckoutPage();
+            }
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        function loadCartPage() {
+            const cartContent = document.getElementById('cart-content');
+            
+            if (cart.length === 0) {
+                cartContent.innerHTML = `
+                    <div style="text-align: center; padding: 60px 0;">
+                        <p style="font-size: 18px; margin-bottom: 30px;">Your cart is currently empty.</p>
+                        <a href="#shop" class="btn">Continue Shopping</a>
+                    </div>
+                `;
+            } else {
+                const cartItemsHTML = cart.map(item => `
+                    <div class="cart-item" data-id="${item.id}">
+                        <div class="cart-item-image">${item.name}</div>
+                        <div class="cart-item-details">
+                            <h3>${item.name}</h3>
+                            <p class="cart-item-price">$${item.price.toFixed(2)}</p>
+                            <div class="cart-item-quantity">
+                                <button class="quantity-btn decrease-btn">-</button>
+                                <span>${item.quantity}</span>
+                                <button class="quantity-btn increase-btn">+</button>
+                            </div>
+                            <button class="cart-item-remove">Remove</button>
+                        </div>
+                        <div class="cart-item-total">
+                            $${(item.price * item.quantity).toFixed(2)}
+                        </div>
+                    </div>
+                `).join('');
+                
+                const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+                const shipping = subtotal > 250 ? 0 : 15;
+                const total = subtotal + shipping;
+                
+                cartContent.innerHTML = `
+                    <div class="cart-container">
+                        <div class="cart-items">
+                            ${cartItemsHTML}
+                        </div>
+                        <div class="cart-summary">
+                            <h3 class="summary-title">Order Summary</h3>
+                            <div class="summary-row">
+                                <span>Subtotal</span>
+                                <span>$${subtotal.toFixed(2)}</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>Shipping</span>
+                                <span>${subtotal > 250 ? 'FREE' : '$15.00'}</span>
+                            </div>
+                            <div class="summary-row summary-total">
+                                <span>Total</span>
+                                <span>$${total.toFixed(2)}</span>
+                            </div>
+                            <a href="#checkout" class="btn" style="width: 100%; text-align: center; margin-top: 20px;">Proceed to Checkout</a>
+                            ${subtotal < 250 ? `<p style="text-align: center; margin-top: 15px; font-size: 14px;">Minimum order: $250 ($${(250 - subtotal).toFixed(2)} more for free shipping)</p>` : ''}
+                        </div>
+                    </div>
+                `;
+                
+                // Add cart functionality
+                document.querySelectorAll('.decrease-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const itemId = this.closest('.cart-item').dataset.id;
+                        const item = cart.find(item => item.id === itemId);
+                        
+                        if (item.quantity > 1) {
+                            item.quantity -= 1;
+                        } else {
+                            cart = cart.filter(item => item.id !== itemId);
+                        }
+                        
+                        updateCartCount();
+                        loadCartPage();
+                    });
+                });
+                
+                document.querySelectorAll('.increase-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const itemId = this.closest('.cart-item').dataset.id;
+                        const item = cart.find(item => item.id === itemId);
+                        item.quantity += 1;
+                        updateCartCount();
+                        loadCartPage();
+                    });
+                });
+                
+                document.querySelectorAll('.cart-item-remove').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const itemId = this.closest('.cart-item').dataset.id;
+                        cart = cart.filter(item => item.id !== itemId);
+                        updateCartCount();
+                        loadCartPage();
+                    });
+                });
+            }
+        }
+
+        function loadCheckoutPage() {
+            const checkoutSummary = document.getElementById('checkout-summary');
+            const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+            const shipping = subtotal > 250 ? 0 : 15;
+            const total = subtotal + shipping;
+            
+            checkoutSummary.innerHTML = `
+                ${cart.map(item => `
+                    <div class="summary-row" style="margin-bottom: 10px;">
+                        <span>${item.name} × ${item.quantity}</span>
+                        <span>$${(item.price * item.quantity).toFixed(2)}</span>
+                    </div>
+                `).join('')}
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span>$${subtotal.toFixed(2)}</span>
+                </div>
+                <div class="summary-row">
+                    <span>Shipping</span>
+                    <span>${subtotal > 250 ? 'FREE' : '$15.00'}</span>
+                </div>
+                <div class="summary-row summary-total">
+                    <span>Total</span>
+                    <span>$${total.toFixed(2)}</span>
+                </div>
+            `;
+            
+            document.getElementById('checkoutForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                showNotification('Thank you for your order! This is a demo site, so no actual payment was processed.');
+                cart = [];
+                updateCartCount();
+                loadPage('home');
+            });
+        }
+
+        // Handle navigation
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const page = this.dataset.page;
+                window.location.hash = page;
+                loadPage(page);
+            });
+        });
+
+        // Handle contact form
+        document.getElementById('contactForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            showNotification('Thank you for your message! This is a demo site, so your message wasn\'t actually sent.');
+            this.reset();
+        });
+
+        // Initialize page based on hash
+        function initPage() {
+            const hash = window.location.hash.substring(1) || 'home';
+            loadPage(hash);
+            setupAddToCartButtons();
+        }
+
+        // Handle hash changes
+        window.addEventListener('hashchange', initPage);
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', initPage);
     </script>
 </body>
 </html>
